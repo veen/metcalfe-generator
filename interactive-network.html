@@ -373,10 +373,11 @@
       }
 
       const dpi = window.devicePixelRatio || 1;
-      const defaultNodeColors = [
+      const allNodeColors = [
         '#3a725e', '#375d8f', '#89c4f4', '#b84c38', '#e6964e',
         '#8b5e3c', '#f1a99b', '#0c5b8f', '#1d8a6d', '#ffb347'
       ];
+      const defaultNodeColors = allNodeColors.slice(0, 4);
 
       const state = {
         nodeCount: 36,
