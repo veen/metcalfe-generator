@@ -10,7 +10,7 @@
 - Switch to **Download** tab; confirm status reports a `1:1` capture size.
 - Click `Download video` once the animation is in the desired pose.
 - Wait for recording to finish automatically; verify UI controls remain disabled during capture.
-- Open the downloaded `.webm`; confirm playback duration matches slider duration and colors/pattern align with on-screen animation.
+- Open the downloaded `.webm`; confirm it plays through the full animation cycle with colors/patterns matching the on-screen state.
 
 ## 2. 16:9 Recording
 - Select `16:9` aspect ratio; status should update with new capture dimensions.
@@ -18,7 +18,7 @@
 - Inspect the resulting video for horizontal letterboxing and undistorted node geometry.
 
 ## 3. Manual Stop / Partial Clip
-- Start a recording and manually stop it mid-way via DevTools > console (`downloadVideoButton.click()` after `state.animate` toggles false) or by lowering the duration to ~3s.
+- Start a recording and interrupt it by toggling the on-screen Play control to pause mid-way (this forces `state.animate` to false).
 - Ensure the saved clip is playable even when interrupted.
 
 ## 4. Tab / Control Regression

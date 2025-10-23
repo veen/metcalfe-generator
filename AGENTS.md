@@ -20,11 +20,11 @@
 - If you introduce new logic, sketch lightweight smoke scripts (Node or browser-based) and keep them optional (`npm run smoke`).
 
 ## Download Capture
-- A **Download** tab records the canvas to WebM/MP4 via the MediaRecorder API. Configure the animation first, switch to Download, pick the aspect ratio/duration, and click `Download video`.
+- A **Download** tab records the canvas to WebM/MP4 via the MediaRecorder API. Configure the animation first, switch to Download, pick the aspect ratio, and click `Download video`.
 - While recording, all other tabs/controls are locked. The status line mirrors capture size and the button reactivates once the clip is ready.
 - Compatibility: requires browsers supporting both `canvas.captureStream` and `MediaRecorder` (Chrome/Edge/Firefox recent builds). Safari and other unsupported environments show a fallback message and keep download controls disabled.
 - Manual QA scenarios (aspect ratio passes, partial clip checks, tab regression) are outlined in `artifacts/manual-qa.md`; review them when touching the capture flow.
-- Limitations: Safari/iOS lack `MediaRecorder`; recommend Screen Recording there. Extremely long captures (≈60s+) can produce large blobs—advise users to keep duration reasonable and share findings if memory pressure surfaces.
+- Limitations: Safari/iOS lack `MediaRecorder`; recommend Screen Recording there. Captures run until the animation finishes, so very dense builds can yield large blobs—adjust build rate if you need shorter clips.
 
 ## Adding Features
 - Treat `lib/app.js` as the orchestration layer: initialize new UI pieces or controls there, delegating logic to dedicated modules.

@@ -9,7 +9,7 @@ Add a “Download” tab to the UI that captures the canvas animation and enable
    1. Add a third tab labelled “Download” to the tabs array in `index.html` (and the associated modules). ✅
    2. Create a new panel in the control card with controls for: ✅
       - Aspect ratio selection (`1:1`, `16:9`). ✅
-      - Video duration field (defaults to current `state.buildRate` × animation span or a preset value). ✅
+      - Video duration field (removed per UI simplification).
       - Download button that begins capture immediately and stays disabled until capture finishes.
       - Status messaging to indicate capture progress or unsupported browser.
    3. Ensure tabs module (`lib/ui/tabs.js`) handles the new tab/panel. ✅
@@ -30,7 +30,7 @@ Add a “Download” tab to the UI that captures the canvas animation and enable
       - Disable the button and show progress messaging. ✅
       - Reset the renderer progress and state to a deterministic starting point. ✅
       - Start MediaRecorder and animation playback (force `state.animate = true` for capture). ✅
-      - Stop capture automatically when duration elapses or animation completes. ✅
+      - Stop capture automatically when the animation completes. ✅
    5. Collect data chunks in an array through `recorder.ondataavailable`. ✅
    6. When capture completes: ✅
       - Stop MediaRecorder. ✅
