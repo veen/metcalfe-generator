@@ -733,6 +733,7 @@
 
       const patternDropdown = document.getElementById('patternDropdown');
       const patternTrigger = document.getElementById('patternMenu');
+      const patternTriggerLabel = document.querySelector('label[for="patternMenu"]');
       const patternLabel = patternDropdown.querySelector('.dropdown-label');
       const patternButtons = Array.from(patternDropdown.querySelectorAll('[data-pattern]'));
 
@@ -777,7 +778,10 @@
       });
 
       document.addEventListener('click', event => {
-        if (!patternDropdown.contains(event.target)) {
+        const target = event.target;
+        const insideDropdown = patternDropdown.contains(target);
+        const onTriggerLabel = patternTriggerLabel && patternTriggerLabel.contains(target);
+        if (!insideDropdown && !onTriggerLabel) {
           closePatternDropdown();
         }
       });
