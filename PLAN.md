@@ -7,11 +7,11 @@ Add a “Download” tab to the UI that captures the canvas animation and enable
 
 1. **UI Extension**
    1. Add a third tab labelled “Download” to the tabs array in `index.html` (and the associated modules). ✅
-   2. Create a new panel in the control card with controls for:
-      - Aspect ratio selection (`1:1`, `16:9`).
-      - Video duration field (defaults to current `state.buildRate` × animation span or a preset value).
-      - Start/Stop recording button.
-      - Download button (disabled until recording completes).
+   2. Create a new panel in the control card with controls for: ✅
+      - Aspect ratio selection (`1:1`, `16:9`). ✅
+      - Video duration field (defaults to current `state.buildRate` × animation span or a preset value). ✅
+      - Start/Stop recording button. ✅
+      - Download button (disabled until recording completes). ✅
    3. Ensure tabs module (`lib/ui/tabs.js`) handles the new tab/panel.
 
 2. **Aspect Ratio Handling**
