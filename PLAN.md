@@ -54,5 +54,5 @@ Add a “Download” tab to the UI that captures the canvas animation and enable
    4. Performance trace after integration to ensure MediaRecorder doesn’t introduce console errors. ✅
 
 7. **Documentation**
-   1. Update `AGENTS.md` (or README) with steps for recording and compatibility notes.
+   1. Update `AGENTS.md` (or README) with steps for recording and compatibility notes. ✅
    2. Mention any known limitations (e.g., Safari MP4 restrictions or long recordings impacting memory).

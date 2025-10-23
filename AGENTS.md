@@ -19,6 +19,12 @@
 - No automated test suite yet; rely on MCP captures plus manual interaction: run through pattern dropdown (including label click), node slider while paused and animating, palette add/remove, and play/pause toggle.
 - If you introduce new logic, sketch lightweight smoke scripts (Node or browser-based) and keep them optional (`npm run smoke`).
 
+## Download Capture
+- A **Download** tab records the canvas to WebM/MP4 via the MediaRecorder API. Configure the animation first, switch to Download, pick the aspect ratio/duration, and click `Download video`.
+- While recording, all other tabs/controls are locked. The status line mirrors capture size and the button reactivates once the clip is ready.
+- Compatibility: requires browsers supporting both `canvas.captureStream` and `MediaRecorder` (Chrome/Edge/Firefox recent builds). Safari and other unsupported environments show a fallback message and keep download controls disabled.
+- Manual QA scenarios (aspect ratio passes, partial clip checks, tab regression) are outlined in `artifacts/manual-qa.md`; review them when touching the capture flow.
+
 ## Adding Features
 - Treat `lib/app.js` as the orchestration layer: initialize new UI pieces or controls there, delegating logic to dedicated modules.
 - Keep rendering math and animation timing within `lib/canvas-renderer.js`; expose explicit methods for new behaviours instead of reaching into internals.
