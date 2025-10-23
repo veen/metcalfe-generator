@@ -21,9 +21,9 @@ Add a “Download” tab to the UI that captures the canvas animation and enable
    2. Provide utilities to map the animation radius settings to the selected aspect ratio without distorting node placement (e.g., letterbox or adjust radius). ✅
 
 3. **MediaRecorder Integration**
-   1. Introduce a download controller module (`lib/ui/download.js`):
-      - Accepts the main renderer, state manager, and the canvas element.
-      - Exposes a single “Download” handler.
+   1. Introduce a download controller module (`lib/ui/download.js`). ✅
+      - Accepts the main renderer, state manager, and the canvas element. ✅
+      - Exposes a single “Download” handler. ✅
    2. Use `canvas.captureStream(fps)` to obtain a stream at configurable FPS (e.g., 30).
    3. Create a `MediaRecorder` from the stream using `video/webm;codecs=vp9` (fallback to `video/webm;codecs=vp8` or `video/mp4;codecs=h264` when supported, by checking `MediaRecorder.isTypeSupported`).
    4. On “Download” click:
