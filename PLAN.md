@@ -10,8 +10,8 @@ Add a “Download” tab to the UI that captures the canvas animation and enable
    2. Create a new panel in the control card with controls for: ✅
       - Aspect ratio selection (`1:1`, `16:9`). ✅
       - Video duration field (defaults to current `state.buildRate` × animation span or a preset value). ✅
-      - Start/Stop recording button. ✅
-      - Download button (disabled until recording completes). ✅
+      - Download button that begins capture immediately and stays disabled until capture finishes.
+      - Status messaging to indicate capture progress or unsupported browser.
    3. Ensure tabs module (`lib/ui/tabs.js`) handles the new tab/panel. ✅
 
 2. **Aspect Ratio Handling**
@@ -23,19 +23,19 @@ Add a “Download” tab to the UI that captures the canvas animation and enable
 3. **MediaRecorder Integration**
    1. Introduce a download controller module (`lib/ui/download.js`):
       - Accepts the main renderer, state manager, and the canvas element.
-      - Exposes UI event handlers.
+      - Exposes a single “Download” handler.
    2. Use `canvas.captureStream(fps)` to obtain a stream at configurable FPS (e.g., 30).
    3. Create a `MediaRecorder` from the stream using `video/webm;codecs=vp9` (fallback to `video/webm;codecs=vp8` or `video/mp4;codecs=h264` when supported, by checking `MediaRecorder.isTypeSupported`).
-   4. On “Start recording”:
-      - Reset the renderer progress and state to deterministic starting point.
-      - Start MediaRecorder.
-      - Trigger animation playback (force `state.animate = true`).
-      - Optionally, clamp total frames by duration (listen for animation complete or set a `setTimeout`).
+   4. On “Download” click:
+      - Disable the button and show progress messaging.
+      - Reset the renderer progress and state to a deterministic starting point.
+      - Start MediaRecorder and animation playback (force `state.animate = true` for capture).
+      - Stop capture automatically when duration elapses or animation completes.
    5. Collect data chunks in an array through `recorder.ondataavailable`.
-   6. On “Stop recording” (or when animation completes):
+   6. When capture completes:
       - Stop MediaRecorder.
       - Combine chunks into a Blob and create an object URL.
-      - Enable the Download button to save the video via `<a download>` or programmatic click.
+      - Auto-trigger the download with a generated filename and re-enable the button.
 
 4. **State & Renderer Coordination**
    1. Extend `canvas-renderer.js` with hooks to:
