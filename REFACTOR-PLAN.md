@@ -29,7 +29,7 @@
    2. Assign responsibilities per module (constants hold immutable values, state manages data + setters, renderer encapsulates drawing/resize/animation, UI modules handle specific DOM clusters, `app.js` orchestrates wiring).
    3. Specify import relationships so each module stays one-directional (UI modules import state setters or callbacks provided by `app.js`; renderer receives injected state and callbacks).
 
-3. Phase 3: Extract Modules and Assets
+3. Phase 3: Extract Modules and Assets ✅
    1. Create `styles/` and `lib/ui/` directories, migrate the inline CSS into `styles/interactive-network.css`, and link it from the HTML head.
    2. Extract constants and default data into `lib/constants.js`; move state initialization and mutation helpers into `lib/state.js`.
    3. Relocate canvas setup, resize logic, animation loop, and geometry helpers into `lib/canvas-renderer.js`, exposing a factory (e.g., `createRenderer(state, canvas)`).
