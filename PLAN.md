@@ -48,7 +48,7 @@ Add a “Download” tab to the UI that captures the canvas animation and enable
    2. Provide a manual fallback suggestion (e.g., use an external screen recorder) or allow frame export. ✅
 
 6. **Testing & QA**
-   1. Manual QA: run through download flows for both aspect ratios, verifying the resulting WebM/MP4 plays correctly.
+   1. Manual QA: run through download flows for both aspect ratios, verifying the resulting WebM/MP4 plays correctly. ✅
    2. Ensure cancelling/stopping mid-way generates a usable partial clip.
    3. Confirm that returning to Design/Colors tabs leaves the app in a consistent state (play/pause toggles, node counts).
    4. Performance trace after integration to ensure MediaRecorder doesn’t introduce console errors.
