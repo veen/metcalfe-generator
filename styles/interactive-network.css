@@ -117,82 +117,78 @@ canvas {
   color: #6d7076;
   min-height: 1.25rem;
 }
-.aspect-options {
-  display: flex;
-  gap: 0.75rem;
-  flex-wrap: wrap;
-}
-.aspect-option {
-  border: 1px solid #d2d2d2;
-  background: #ffffff;
-  color: #1b1c1f;
-  border-radius: 12px;
-  padding: 0.6rem 0.75rem;
-  min-width: 120px;
+.aspect-tabs {
   display: inline-flex;
   align-items: center;
-  gap: 0.75rem;
+  padding: 0.2rem;
+  background: #f1f1f1;
+  border-radius: 14px;
+  border: 1px solid #e1e1e1;
+  gap: 0.35rem;
+}
+.aspect-tab {
+  border: 1px solid transparent;
+  background: transparent;
+  color: #3b3b3d;
+  border-radius: 10px;
+  padding: 0.45rem 0.85rem 0.45rem 0.7rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.85rem;
+  font-weight: 600;
   cursor: pointer;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+  transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
 }
-.aspect-option:hover {
-  border-color: #bcbcbc;
-  box-shadow: 0 3px 10px rgba(20, 20, 20, 0.08);
+.aspect-tab:hover {
+  background: rgba(255, 255, 255, 0.75);
 }
-.aspect-option:focus-visible {
+.aspect-tab:focus-visible {
   outline: 2px solid #2563eb;
   outline-offset: 2px;
 }
-.aspect-option[aria-pressed="true"] {
-  border-color: #2563eb;
-  color: #0f172a;
-  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.18);
+.aspect-tab-active {
+  background: #ffffff;
+  color: #111111;
+  box-shadow:
+    0 2px 6px rgba(15, 15, 15, 0.12),
+    inset 0 0 0 1px #d5d5d5;
+  border-color: #d5d5d5;
 }
 .aspect-icon {
-  position: relative;
-  width: 48px;
-  height: 42px;
-  border-radius: 10px;
-  background: #f4f4f5;
+  width: 34px;
+  height: 26px;
+  border-radius: 8px;
+  background: #f5f5f7;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
+  position: relative;
 }
-.aspect-icon-square .aspect-rect {
-  width: 18px;
-  height: 18px;
-}
-.aspect-icon-wide .aspect-rect {
-  width: 26px;
-  height: 14px;
+.aspect-tab-active .aspect-icon {
+  background: #e7f0ff;
 }
 .aspect-rect {
   border: 2px solid currentColor;
   border-radius: 4px;
-  opacity: 0.65;
-  transition: opacity 0.2s ease, transform 0.2s ease;
+  opacity: 0.7;
+  transition: transform 0.2s ease, opacity 0.2s ease;
 }
-.aspect-option[aria-pressed="true"] .aspect-rect {
+.aspect-tab-active .aspect-rect {
   opacity: 0.95;
   transform: scale(1.05);
 }
-.aspect-check {
-  position: absolute;
-  width: 18px;
-  height: 18px;
-  color: #2563eb;
-  opacity: 0;
-  transform: translateY(8px);
-  transition: opacity 0.2s ease, transform 0.2s ease;
+.aspect-icon-square .aspect-rect {
+  width: 14px;
+  height: 14px;
 }
-.aspect-option[aria-pressed="true"] .aspect-check {
-  opacity: 1;
-  transform: translateY(0);
+.aspect-icon-wide .aspect-rect {
+  width: 20px;
+  height: 10px;
 }
 .aspect-label {
-  font-size: 0.9rem;
-  font-weight: 500;
+  font-size: 0.85rem;
+  letter-spacing: 0.01em;
 }
 .color-grid {
   display: flex;
