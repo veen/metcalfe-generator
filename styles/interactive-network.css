@@ -380,8 +380,9 @@ footer {
 }
 .aspect-icon {
   display: inline-block;
-  background: #d1d3d6;
   position: relative;
+  border: 1.5px solid #9aa0ab;
+  background: transparent;
 }
 .aspect-icon-square {
   width: 12px;
@@ -392,5 +393,5 @@ footer {
   height: 10px;
 }
 .tab-active .aspect-icon {
-  background: #949aa6;
+  border-color: #4a4f57;
 }
