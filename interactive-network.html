@@ -157,12 +157,23 @@
     .control {
       display: flex;
       flex-direction: column;
-      gap: 0.25rem;
+      gap: 0.45rem;
       font-size: 0.9rem;
+    }
+    .control-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 0.75rem;
     }
     .control label {
       font-weight: 500;
       color: #1f1f20;
+    }
+    .control-value {
+      font-size: 0.85rem;
+      font-weight: 300;
+      color: #6d7076;
     }
     .control input[type="range"],
     .control input[type="color"],
@@ -297,24 +308,32 @@
       <div class="controls-card">
         <div class="panel panel-active" id="panel-structure" role="tabpanel" aria-labelledby="tab-structure">
           <div class="control">
-            <label for="nodeCount">Node Count</label>
+            <div class="control-header">
+              <label for="nodeCount">Node Count</label>
+              <span class="control-value" id="nodeCountValue">36</span>
+            </div>
             <input id="nodeCount" type="range" min="3" max="96" value="36">
-            <div class="value"><span>3</span><span id="nodeCountValue">36</span><span>96</span></div>
           </div>
           <div class="control">
-            <label for="nodeRadius">Node Radius</label>
+            <div class="control-header">
+              <label for="nodeRadius">Node Radius</label>
+              <span class="control-value" id="nodeRadiusValue">11</span>
+            </div>
             <input id="nodeRadius" type="range" min="4" max="18" value="11">
-            <div class="value"><span>4</span><span id="nodeRadiusValue">11</span><span>18</span></div>
           </div>
           <div class="control">
-            <label for="radius">Graph Radius</label>
+            <div class="control-header">
+              <label for="radius">Graph Radius</label>
+              <span class="control-value" id="radiusValue">320</span>
+            </div>
             <input id="radius" type="range" min="120" max="320" value="320">
-            <div class="value"><span>120</span><span id="radiusValue">320</span><span>320</span></div>
           </div>
           <div class="control">
-            <label for="lineWidth">Line Width</label>
+            <div class="control-header">
+              <label for="lineWidth">Line Width</label>
+              <span class="control-value" id="lineWidthValue">0.50</span>
+            </div>
             <input id="lineWidth" type="range" min="0.25" max="3" step="0.05" value="0.5">
-            <div class="value"><span>0.25</span><span id="lineWidthValue">0.50</span><span>3.00</span></div>
           </div>
           <div class="control">
             <label for="pattern">Pattern</label>
@@ -326,9 +345,11 @@
             </select>
           </div>
           <div class="control">
-            <label for="buildRate">Build Rate (nodes/sec)</label>
+            <div class="control-header">
+              <label for="buildRate">Build Rate (nodes/sec)</label>
+              <span class="control-value" id="buildRateValue">6.0</span>
+            </div>
             <input id="buildRate" type="range" min="0.5" max="20" step="0.5" value="6">
-            <div class="value"><span>0.5</span><span id="buildRateValue">6.0</span><span>20</span></div>
           </div>
           <div class="toggles">
             <button id="playToggle" type="button" class="button button-primary">Pause</button>
