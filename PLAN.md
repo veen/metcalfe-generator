@@ -31,7 +31,7 @@ Add a “Download” tab to the UI that captures the canvas animation and enable
       - Reset the renderer progress and state to a deterministic starting point. ✅
       - Start MediaRecorder and animation playback (force `state.animate = true` for capture). ✅
       - Stop capture automatically when duration elapses or animation completes. ✅
-   5. Collect data chunks in an array through `recorder.ondataavailable`.
+   5. Collect data chunks in an array through `recorder.ondataavailable`. ✅
    6. When capture completes:
       - Stop MediaRecorder.
       - Combine chunks into a Blob and create an object URL.
