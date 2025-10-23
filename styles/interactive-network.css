@@ -165,9 +165,6 @@ canvas {
   justify-content: center;
   position: relative;
 }
-.aspect-tab-active .aspect-icon {
-  background: #e7f0ff;
-}
 .aspect-rect {
   border: 2px solid currentColor;
   border-radius: 4px;
