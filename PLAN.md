@@ -38,9 +38,9 @@ Add a “Download” tab to the UI that captures the canvas animation and enable
       - Auto-trigger the download with a generated filename and re-enable the button. ✅
 
 4. **State & Renderer Coordination**
-   1. Extend `canvas-renderer.js` with hooks to:
-      - Restart from the initial state for recorded sessions.
-      - Notify the download module when the animation completes.
+   1. Extend `canvas-renderer.js` with hooks to: ✅
+      - Restart from the initial state for recorded sessions. ✅
+      - Notify the download module when the animation completes. ✅
    2. Allow the download module to temporarily disable user controls (e.g., while recording) to avoid conflicting interactions.
 
 5. **Graceful Fallback**
