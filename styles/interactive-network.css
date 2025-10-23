@@ -111,6 +111,12 @@ canvas {
 .panel-active {
   display: flex;
 }
+.download-status {
+  margin: 0;
+  font-size: 0.82rem;
+  color: #6d7076;
+  min-height: 1.25rem;
+}
 .color-grid {
   display: flex;
   flex-direction: column;

@@ -15,9 +15,9 @@ Add a “Download” tab to the UI that captures the canvas animation and enable
    3. Ensure tabs module (`lib/ui/tabs.js`) handles the new tab/panel. ✅
 
 2. **Aspect Ratio Handling**
-   1. When the Download tab is selected, use chosen aspect ratio to compute canvas capture size:
-      - `1:1` → matching current diameter.
-      - `16:9` → adjust `canvas` CSS (or use an offscreen canvas) to render frames in the requested ratio.
+   1. When the Download tab is selected, use chosen aspect ratio to compute canvas capture size. ✅
+      - `1:1` → matching current diameter. ✅
+      - `16:9` → adjust `canvas` CSS (or use an offscreen canvas) to render frames in the requested ratio. ✅
    2. Provide utilities to map the animation radius settings to the selected aspect ratio without distorting node placement (e.g., letterbox or adjust radius).
 
 3. **MediaRecorder Integration**
