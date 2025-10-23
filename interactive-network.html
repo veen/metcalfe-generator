@@ -63,6 +63,86 @@
       font-size: 1.15rem;
       font-weight: 600;
     }
+    .tabs {
+      display: flex;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+    }
+    .tab {
+      border: none;
+      background: rgba(186, 109, 57, 0.14);
+      color: #5a412d;
+      border-radius: 999px;
+      padding: 0.35rem 1rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s ease, color 0.2s ease, transform 0.15s ease;
+    }
+    .tab:hover {
+      background: rgba(186, 109, 57, 0.24);
+      transform: translateY(-1px);
+    }
+    .tab:active {
+      transform: translateY(0);
+    }
+    .tab-active {
+      background: #ba6d39;
+      color: #fff7ec;
+      box-shadow: 0 6px 16px rgba(186, 109, 57, 0.25);
+    }
+    .panel {
+      display: none;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .panel-active {
+      display: flex;
+    }
+    .color-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+    .color-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      padding: 0.55rem 0.75rem;
+      background: rgba(186, 109, 57, 0.08);
+      border-radius: 12px;
+    }
+    .color-item span {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #4e3828;
+    }
+    .color-item input[type="color"] {
+      width: 48px;
+      height: 32px;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+    }
+    .color-item button {
+      border: none;
+      background: rgba(47, 44, 40, 0.12);
+      color: #4e3828;
+      padding: 0.3rem 0.65rem;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s ease, transform 0.15s ease;
+    }
+    .color-item button:hover {
+      background: rgba(47, 44, 40, 0.2);
+      transform: translateY(-1px);
+    }
+    .color-item button:active {
+      transform: translateY(0);
+    }
     .control {
       display: flex;
       flex-direction: column;
@@ -154,50 +234,69 @@
     <canvas id="networkCanvas"></canvas>
     <aside class="controls">
       <h2>Appearance</h2>
-      <div class="control">
-        <label for="nodeCount">Node Count</label>
-        <input id="nodeCount" type="range" min="3" max="96" value="36">
-        <div class="value"><span>3</span><span id="nodeCountValue">36</span><span>96</span></div>
+      <div class="tabs" role="tablist">
+        <button class="tab tab-active" id="tab-structure" data-target="panel-structure" role="tab" aria-selected="true">Structure</button>
+        <button class="tab" id="tab-colors" data-target="panel-colors" role="tab" aria-selected="false">Colors</button>
       </div>
-      <div class="control">
-        <label for="nodeRadius">Node Radius</label>
-        <input id="nodeRadius" type="range" min="4" max="18" value="11">
-        <div class="value"><span>4</span><span id="nodeRadiusValue">11</span><span>18</span></div>
+      <div class="panel panel-active" id="panel-structure" role="tabpanel" aria-labelledby="tab-structure">
+        <div class="control">
+          <label for="nodeCount">Node Count</label>
+          <input id="nodeCount" type="range" min="3" max="96" value="36">
+          <div class="value"><span>3</span><span id="nodeCountValue">36</span><span>96</span></div>
+        </div>
+        <div class="control">
+          <label for="nodeRadius">Node Radius</label>
+          <input id="nodeRadius" type="range" min="4" max="18" value="11">
+          <div class="value"><span>4</span><span id="nodeRadiusValue">11</span><span>18</span></div>
+        </div>
+        <div class="control">
+          <label for="radius">Graph Radius</label>
+          <input id="radius" type="range" min="120" max="320" value="320">
+          <div class="value"><span>120</span><span id="radiusValue">320</span><span>320</span></div>
+        </div>
+        <div class="control">
+          <label for="lineWidth">Line Width</label>
+          <input id="lineWidth" type="range" min="0.25" max="3" step="0.05" value="0.5">
+          <div class="value"><span>0.25</span><span id="lineWidthValue">0.50</span><span>3.00</span></div>
+        </div>
+        <div class="control">
+          <label for="pattern">Pattern</label>
+          <select id="pattern">
+            <option value="circular-alternating" selected>Circular alternating</option>
+            <option value="circular">Circular sweep</option>
+            <option value="opposite">Opposite pairs</option>
+            <option value="alternating">Alternating fill</option>
+          </select>
+        </div>
+        <div class="control">
+          <label for="buildRate">Build Rate (nodes/sec)</label>
+          <input id="buildRate" type="range" min="0.5" max="20" step="0.5" value="6">
+          <div class="value"><span>0.5</span><span id="buildRateValue">6.0</span><span>20</span></div>
+        </div>
+        <div class="toggles">
+          <button id="playToggle" type="button" class="button button-primary">Pause</button>
+        </div>
       </div>
-      <div class="control">
-        <label for="radius">Graph Radius</label>
-        <input id="radius" type="range" min="120" max="320" value="320">
-        <div class="value"><span>120</span><span id="radiusValue">320</span><span>320</span></div>
-      </div>
-      <div class="control">
-        <label for="lineWidth">Line Width</label>
-        <input id="lineWidth" type="range" min="0.25" max="3" step="0.05" value="0.5">
-        <div class="value"><span>0.25</span><span id="lineWidthValue">0.50</span><span>3.00</span></div>
-      </div>
-      <div class="control">
-        <label for="lineColor">Line Color</label>
-        <input id="lineColor" type="color" value="#6b5f4b">
-      </div>
-      <div class="control">
-        <label for="backgroundColor">Background</label>
-        <input id="backgroundColor" type="color" value="#f0e1c6">
-      </div>
-      <div class="control">
-        <label for="pattern">Pattern</label>
-        <select id="pattern">
-          <option value="circular-alternating" selected>Circular alternating</option>
-          <option value="circular">Circular sweep</option>
-          <option value="opposite">Opposite pairs</option>
-          <option value="alternating">Alternating fill</option>
-        </select>
-      </div>
-      <div class="control">
-        <label for="buildRate">Build Rate (nodes/sec)</label>
-        <input id="buildRate" type="range" min="0.5" max="20" step="0.5" value="6">
-        <div class="value"><span>0.5</span><span id="buildRateValue">6.0</span><span>20</span></div>
-      </div>
-      <div class="toggles">
-        <button id="playToggle" type="button" class="button button-primary">Pause</button>
+      <div class="panel" id="panel-colors" role="tabpanel" aria-labelledby="tab-colors">
+        <div class="control">
+          <label for="lineColor">Line Color</label>
+          <input id="lineColor" type="color" value="#6b5f4b">
+        </div>
+        <div class="control">
+          <label for="backgroundColor">Background</label>
+          <input id="backgroundColor" type="color" value="#f0e1c6">
+        </div>
+        <div class="control">
+          <label>Node Colors</label>
+          <div id="nodeColorList" class="color-grid"></div>
+        </div>
+        <div class="control">
+          <label for="newNodeColor">Add Node Color</label>
+          <div style="display:flex; gap:0.75rem; align-items:center;">
+            <input id="newNodeColor" type="color" value="#ffffff" title="New node color">
+            <button id="addNodeColor" type="button" class="button">Add Color</button>
+          </div>
+        </div>
       </div>
     </aside>
   </div>
@@ -215,7 +314,7 @@
       }
 
       const dpi = window.devicePixelRatio || 1;
-      const nodePalette = [
+      const defaultNodeColors = [
         '#3a725e', '#375d8f', '#89c4f4', '#b84c38', '#e6964e',
         '#8b5e3c', '#f1a99b', '#0c5b8f', '#1d8a6d', '#ffb347'
       ];
@@ -229,7 +328,8 @@
         backgroundColor: '#f0e1c6',
         pattern: 'circular-alternating',
         buildRate: 6, // nodes per second
-        animate: true
+        animate: true,
+        nodeColors: [...defaultNodeColors]
       };
 
       let lastTimestamp = performance.now();
@@ -351,6 +451,7 @@
           Math.max(MIN_NODES, Math.floor(baseCount + (nextCount - baseCount) * transition))
         );
 
+        const palette = state.nodeColors.length ? state.nodeColors : defaultNodeColors;
         ctx.lineWidth = state.lineWidth;
         ctx.strokeStyle = state.lineColor;
         ctx.beginPath();
@@ -372,7 +473,7 @@
           if (scale <= 0) return;
           ctx.save();
           ctx.globalAlpha = scale < 1 ? scale : 1;
-          ctx.fillStyle = nodePalette[node.index % nodePalette.length];
+          ctx.fillStyle = palette[node.index % palette.length];
           ctx.beginPath();
           const radius = state.nodeRadius * (scale < 1 ? scale : 1);
           ctx.arc(node.x, node.y, radius, 0, Math.PI * 2);
@@ -419,6 +520,66 @@
         el.addEventListener('input', () => handler(el.value));
       });
 
+      const tabs = Array.from(document.querySelectorAll('.tab'));
+      const panels = new Map(
+        Array.from(document.querySelectorAll('.panel')).map(panel => [panel.id, panel])
+      );
+
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          if (tab.classList.contains('tab-active')) return;
+          tabs.forEach(btn => {
+            btn.classList.toggle('tab-active', btn === tab);
+            btn.setAttribute('aria-selected', btn === tab ? 'true' : 'false');
+          });
+          panels.forEach(panel => panel.classList.remove('panel-active'));
+          const targetPanel = panels.get(tab.dataset.target);
+          if (targetPanel) {
+            targetPanel.classList.add('panel-active');
+          }
+        });
+      });
+
+      const nodeColorList = document.getElementById('nodeColorList');
+      const newNodeColorInput = document.getElementById('newNodeColor');
+      const addNodeColorButton = document.getElementById('addNodeColor');
+
+      function renderNodeColorList() {
+        nodeColorList.innerHTML = '';
+        const palette = state.nodeColors.length ? state.nodeColors : defaultNodeColors;
+        palette.forEach((color, index) => {
+          const item = document.createElement('div');
+          item.className = 'color-item';
+          const input = document.createElement('input');
+          input.type = 'color';
+          input.value = color;
+          input.setAttribute('aria-label', `Node color ${index + 1}`);
+          input.addEventListener('input', event => {
+            state.nodeColors[index] = event.target.value;
+          });
+          item.appendChild(input);
+
+          if (state.nodeColors.length > 1) {
+            const removeButton = document.createElement('button');
+            removeButton.type = 'button';
+            removeButton.textContent = 'Remove';
+            removeButton.addEventListener('click', () => {
+              state.nodeColors.splice(index, 1);
+              renderNodeColorList();
+            });
+            item.appendChild(removeButton);
+          }
+
+          nodeColorList.appendChild(item);
+        });
+      }
+
+      addNodeColorButton.addEventListener('click', () => {
+        const newColor = newNodeColorInput.value || '#ffffff';
+        state.nodeColors.push(newColor);
+        renderNodeColorList();
+      });
+
       const playToggle = document.getElementById('playToggle');
       playToggle.addEventListener('click', () => {
         state.animate = !state.animate;
@@ -430,6 +591,8 @@
           drawFrame(0);
         }
       });
+
+      renderNodeColorList();
 
       window.addEventListener('resize', () => {
         resizeCanvas();
