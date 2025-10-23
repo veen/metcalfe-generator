@@ -157,7 +157,8 @@
       <div class="control">
         <label for="pattern">Pattern</label>
         <select id="pattern">
-          <option value="circular" selected>Circular sweep</option>
+          <option value="circular-alternating" selected>Circular alternating</option>
+          <option value="circular">Circular sweep</option>
           <option value="opposite">Opposite pairs</option>
           <option value="alternating">Alternating fill</option>
         </select>
@@ -199,7 +200,7 @@
         lineWidth: 0.9,
         lineColor: '#6b5f4b',
         backgroundColor: '#f0e1c6',
-        pattern: 'circular',
+        pattern: 'circular-alternating',
         buildRate: 6, // nodes per second
         animate: true,
         drawConnections: true
@@ -233,6 +234,23 @@
           let right = Math.floor(count / 2);
           for (let i = 0; i < count; i++) {
             indices[i] = (i % 2 === 0) ? (left++) % count : (right++) % count;
+          }
+        } else if (pattern === 'circular-alternating') {
+          indices[0] = 0;
+          let left = 1;
+          let right = count - 1;
+          let takeRight = true;
+          for (let i = 1; i < count; i++) {
+            if (takeRight && right >= left) {
+              indices[i] = right--;
+            } else if (!takeRight && left <= right + 1) {
+              indices[i] = left++;
+            } else if (right >= left) {
+              indices[i] = right--;
+            } else {
+              indices[i] = left++;
+            }
+            takeRight = !takeRight;
           }
         } else if (pattern === 'alternating') {
           let idx = 0;
