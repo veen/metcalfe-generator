@@ -117,6 +117,83 @@ canvas {
   color: #6d7076;
   min-height: 1.25rem;
 }
+.aspect-options {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+.aspect-option {
+  border: 1px solid #d2d2d2;
+  background: #ffffff;
+  color: #1b1c1f;
+  border-radius: 12px;
+  padding: 0.6rem 0.75rem;
+  min-width: 120px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  cursor: pointer;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+.aspect-option:hover {
+  border-color: #bcbcbc;
+  box-shadow: 0 3px 10px rgba(20, 20, 20, 0.08);
+}
+.aspect-option:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+}
+.aspect-option[aria-pressed="true"] {
+  border-color: #2563eb;
+  color: #0f172a;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.18);
+}
+.aspect-icon {
+  position: relative;
+  width: 48px;
+  height: 42px;
+  border-radius: 10px;
+  background: #f4f4f5;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.aspect-icon-square .aspect-rect {
+  width: 18px;
+  height: 18px;
+}
+.aspect-icon-wide .aspect-rect {
+  width: 26px;
+  height: 14px;
+}
+.aspect-rect {
+  border: 2px solid currentColor;
+  border-radius: 4px;
+  opacity: 0.65;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+.aspect-option[aria-pressed="true"] .aspect-rect {
+  opacity: 0.95;
+  transform: scale(1.05);
+}
+.aspect-check {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  color: #2563eb;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+.aspect-option[aria-pressed="true"] .aspect-check {
+  opacity: 1;
+  transform: translateY(0);
+}
+.aspect-label {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
 .color-grid {
   display: flex;
   flex-direction: column;
@@ -169,6 +246,12 @@ canvas {
 .control-header > label {
   font-weight: 500;
   color: #1f1f20;
+}
+.control-label {
+  font-weight: 500;
+  color: #1f1f20;
+  display: inline-block;
+  margin-bottom: 0.35rem;
 }
 .control-value {
   font-size: 0.85rem;
