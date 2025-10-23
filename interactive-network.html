@@ -99,6 +99,34 @@
       font-weight: 500;
       font-size: 0.85rem;
     }
+    .button {
+      appearance: none;
+      border: none;
+      border-radius: 999px;
+      padding: 0.55rem 1.5rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.2s ease;
+    }
+    .button:focus-visible {
+      outline: 2px solid rgba(186, 109, 57, 0.6);
+      outline-offset: 2px;
+    }
+    .button-primary {
+      background: #ba6d39;
+      color: #fff7ec;
+      box-shadow: 0 8px 20px rgba(186, 109, 57, 0.25);
+    }
+    .button-primary:hover {
+      background: #a55e31;
+      box-shadow: 0 10px 24px rgba(186, 109, 57, 0.28);
+      transform: translateY(-1px);
+    }
+    .button-primary:active {
+      transform: translateY(0);
+      box-shadow: 0 6px 14px rgba(186, 109, 57, 0.2);
+    }
     footer {
       padding: 0.75rem 1.5rem 1.5rem;
       font-size: 0.8rem;
@@ -169,8 +197,7 @@
         <div class="value"><span>0.5</span><span id="buildRateValue">6.0</span><span>20</span></div>
       </div>
       <div class="toggles">
-        <label><input id="animate" type="checkbox" checked> Animate build</label>
-        <label><input id="drawConnections" type="checkbox" checked> Show connections</label>
+        <button id="playToggle" type="button" class="button button-primary">Pause</button>
       </div>
     </aside>
   </div>
@@ -202,8 +229,7 @@
         backgroundColor: '#f0e1c6',
         pattern: 'circular-alternating',
         buildRate: 6, // nodes per second
-        animate: true,
-        drawConnections: true
+        animate: true
       };
 
       let lastTimestamp = performance.now();
@@ -327,20 +353,18 @@
 
         ctx.lineWidth = state.lineWidth;
         ctx.strokeStyle = state.lineColor;
-        if (state.drawConnections) {
-          ctx.beginPath();
-          for (let i = 0; i < visibleCount; i++) {
-            const nodeA = nodes[i];
-            if (!nodeA) continue;
-            for (let j = i + 1; j < visibleCount; j++) {
-              const nodeB = nodes[j];
-              if (!nodeB) continue;
-              ctx.moveTo(nodeA.x, nodeA.y);
-              ctx.lineTo(nodeB.x, nodeB.y);
-            }
+        ctx.beginPath();
+        for (let i = 0; i < visibleCount; i++) {
+          const nodeA = nodes[i];
+          if (!nodeA) continue;
+          for (let j = i + 1; j < visibleCount; j++) {
+            const nodeB = nodes[j];
+            if (!nodeB) continue;
+            ctx.moveTo(nodeA.x, nodeA.y);
+            ctx.lineTo(nodeB.x, nodeB.y);
           }
-          ctx.stroke();
         }
+        ctx.stroke();
 
         ctx.globalAlpha = 0.95;
         nodes.forEach(node => {
@@ -386,21 +410,24 @@
         ['buildRate', v => {
           state.buildRate = parseFloat(v);
           document.getElementById('buildRateValue').textContent = parseFloat(v).toFixed(1);
-        }],
-        ['animate', v => {
-          state.animate = v;
-          visibleNodeProgress = v ? MIN_NODES : state.nodeCount;
-          lastTimestamp = performance.now();
-        }],
-        ['drawConnections', v => { state.drawConnections = v; }]
+        }]
       ];
 
       controls.forEach(([id, handler]) => {
         const el = document.getElementById(id);
-        if (el.type === 'checkbox') {
-          el.addEventListener('change', () => handler(el.checked));
-        } else {
-          el.addEventListener('input', () => handler(el.value));
+        if (!el) return;
+        el.addEventListener('input', () => handler(el.value));
+      });
+
+      const playToggle = document.getElementById('playToggle');
+      playToggle.addEventListener('click', () => {
+        state.animate = !state.animate;
+        playToggle.textContent = state.animate ? 'Pause' : 'Play';
+        visibleNodeProgress = state.animate ? MIN_NODES : state.nodeCount;
+        lastTimestamp = performance.now();
+        if (!state.animate) {
+          // Force render with full graph immediately when paused
+          drawFrame(0);
         }
       });
 
