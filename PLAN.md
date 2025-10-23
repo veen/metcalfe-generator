@@ -12,7 +12,7 @@ Add a “Download” tab to the UI that captures the canvas animation and enable
       - Video duration field (defaults to current `state.buildRate` × animation span or a preset value). ✅
       - Start/Stop recording button. ✅
       - Download button (disabled until recording completes). ✅
-   3. Ensure tabs module (`lib/ui/tabs.js`) handles the new tab/panel.
+   3. Ensure tabs module (`lib/ui/tabs.js`) handles the new tab/panel. ✅
 
 2. **Aspect Ratio Handling**
    1. When the Download tab is selected, use chosen aspect ratio to compute canvas capture size:
