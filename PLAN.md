@@ -55,4 +55,4 @@ Add a “Download” tab to the UI that captures the canvas animation and enable
 
 7. **Documentation**
    1. Update `AGENTS.md` (or README) with steps for recording and compatibility notes. ✅
-   2. Mention any known limitations (e.g., Safari MP4 restrictions or long recordings impacting memory).
+   2. Mention any known limitations (e.g., Safari MP4 restrictions or long recordings impacting memory). ✅

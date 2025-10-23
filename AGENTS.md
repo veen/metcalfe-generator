@@ -24,6 +24,7 @@
 - While recording, all other tabs/controls are locked. The status line mirrors capture size and the button reactivates once the clip is ready.
 - Compatibility: requires browsers supporting both `canvas.captureStream` and `MediaRecorder` (Chrome/Edge/Firefox recent builds). Safari and other unsupported environments show a fallback message and keep download controls disabled.
 - Manual QA scenarios (aspect ratio passes, partial clip checks, tab regression) are outlined in `artifacts/manual-qa.md`; review them when touching the capture flow.
+- Limitations: Safari/iOS lack `MediaRecorder`; recommend Screen Recording there. Extremely long captures (≈60s+) can produce large blobs—advise users to keep duration reasonable and share findings if memory pressure surfaces.
 
 ## Adding Features
 - Treat `lib/app.js` as the orchestration layer: initialize new UI pieces or controls there, delegating logic to dedicated modules.
