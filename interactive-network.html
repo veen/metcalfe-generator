@@ -44,7 +44,7 @@
       padding: 0 1.5rem 1.5rem;
     }
     canvas {
-      width: 100%;
+      width: min(100%, var(--canvas-size, 520px));
       height: auto;
       aspect-ratio: 1 / 1;
       display: block;
@@ -373,6 +373,8 @@
       }
 
       const dpi = window.devicePixelRatio || 1;
+      const MIN_CANVAS_SIZE = 320;
+      const CANVAS_PADDING = 48;
       const allNodeColors = [
         '#3a725e', '#375d8f', '#89c4f4', '#b84c38', '#e6964e',
         '#8b5e3c', '#f1a99b', '#0c5b8f', '#1d8a6d', '#ffb347'
@@ -398,7 +400,18 @@
       const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
       const lerp = (a, b, t) => a + (b - a) * t;
 
+      function computeTargetCanvasSize() {
+        const diameter = 2 * (state.radius + state.nodeRadius) + CANVAS_PADDING;
+        return Math.max(MIN_CANVAS_SIZE, diameter);
+      }
+
+      function updateCanvasCSSSize() {
+        const targetSize = computeTargetCanvasSize();
+        canvas.style.setProperty('--canvas-size', `${Math.round(targetSize)}px`);
+      }
+
       function resizeCanvas() {
+        updateCanvasCSSSize();
         const rect = canvas.getBoundingClientRect();
         canvas.width = Math.floor(rect.width * dpi);
         canvas.height = Math.floor(rect.height * dpi);
@@ -562,6 +575,7 @@
       }
 
       rangeInputs.forEach(updateRangeProgress);
+      updateCanvasCSSSize();
 
       const controls = [
         ['nodeCount', v => {
@@ -569,10 +583,15 @@
           document.getElementById('nodeCountValue').textContent = v;
           visibleNodeProgress = state.animate ? MIN_NODES : state.nodeCount;
         }],
-        ['nodeRadius', v => { state.nodeRadius = parseFloat(v); document.getElementById('nodeRadiusValue').textContent = v; }],
+        ['nodeRadius', v => {
+          state.nodeRadius = parseFloat(v);
+          document.getElementById('nodeRadiusValue').textContent = v;
+          resizeCanvas();
+        }],
         ['radius', v => {
           state.radius = parseFloat(v);
           document.getElementById('radiusValue').textContent = v;
+          resizeCanvas();
         }],
         ['lineWidth', v => { state.lineWidth = parseFloat(v); document.getElementById('lineWidthValue').textContent = parseFloat(v).toFixed(2); }],
         ['lineColor', v => { state.lineColor = v; }],
