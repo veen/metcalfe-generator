@@ -127,7 +127,6 @@ canvas {
   gap: 0.35rem;
 }
 .aspect-tab {
-  border: 1px solid transparent;
   background: transparent;
   color: #3b3b3d;
   border-radius: 10px;
