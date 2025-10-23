@@ -51,7 +51,7 @@ Add a “Download” tab to the UI that captures the canvas animation and enable
    1. Manual QA: run through download flows for both aspect ratios, verifying the resulting WebM/MP4 plays correctly. ✅
    2. Ensure cancelling/stopping mid-way generates a usable partial clip. ✅
    3. Confirm that returning to Design/Colors tabs leaves the app in a consistent state (play/pause toggles, node counts). ✅
-   4. Performance trace after integration to ensure MediaRecorder doesn’t introduce console errors.
+   4. Performance trace after integration to ensure MediaRecorder doesn’t introduce console errors. ✅
 
 7. **Documentation**
    1. Update `AGENTS.md` (or README) with steps for recording and compatibility notes.
