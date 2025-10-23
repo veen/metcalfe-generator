@@ -373,3 +373,25 @@ footer {
     order: -1;
   }
 }
+.aspect-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+.aspect-icon {
+  display: inline-block;
+  border-radius: 6px;
+  background: #d9dadd;
+  position: relative;
+}
+.aspect-icon-square {
+  width: 12px;
+  height: 12px;
+}
+.aspect-icon-wide {
+  width: 18px;
+  height: 10px;
+}
+.tab-active .aspect-icon {
+  background: #b5c3f4;
+}
