@@ -118,7 +118,7 @@ window.addEventListener('resize', () => {
 
 ### Maintainability
 
-#### 11. Bloated download.js (552 lines)
+#### 11. ✅ Bloated download.js (552 lines)
 **Location**: lib/ui/download.js
 **Issue**: Mixing concerns: UI, recording, file generation, control locking
 **Fix**: Split into separate modules:
