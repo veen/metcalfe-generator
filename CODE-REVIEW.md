@@ -36,7 +36,7 @@ return () => {
 };
 ```
 
-#### 3. Uncalled Cleanup Functions (lib/app.js:56, 89)
+#### 3. ✅ Uncalled Cleanup Functions (lib/app.js:56, 89)
 **Location**: lib/app.js:56, 89
 **Issue**: Pattern dropdown returns cleanup function that's never called
 **Fix**: Store cleanup functions and call them on app teardown
