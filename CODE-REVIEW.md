@@ -74,7 +74,7 @@ cleanup.forEach(fn => fn && fn());
 **Impact**: 96 nodes = 4,560 line draws per frame
 **Fix**: Consider caching connection geometry or using WebGL for large node counts
 
-#### 7. Continuous RAF Loop (lib/canvas-renderer.js:207-212)
+#### 7. ✅ Continuous RAF Loop (lib/canvas-renderer.js:207-212)
 **Location**: lib/canvas-renderer.js:207-212
 **Issue**: Animation loop runs even when nothing changes
 **Fix**: Pause RAF when animation completes and no interactions occur
@@ -91,7 +91,7 @@ const loop = (timestamp) => {
 };
 ```
 
-#### 8. No Resize Throttling (lib/app.js:94-96)
+#### 8. ✅ No Resize Throttling (lib/app.js:94-96)
 **Location**: lib/app.js:94-96
 **Issue**: Resize handler fires on every pixel change
 **Fix**: Throttle to 100-200ms using requestAnimationFrame
