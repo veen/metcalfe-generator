@@ -106,12 +106,12 @@ window.addEventListener('resize', () => {
 });
 ```
 
-#### 9. Full DOM Rebuild on Color Change (lib/ui/palette.js:6-38)
+#### 9. ✅ Full DOM Rebuild on Color Change (lib/ui/palette.js:6-38)
 **Location**: lib/ui/palette.js:6-38
 **Issue**: Entire palette re-rendered on every color change. Creates new event listeners each time (memory leak potential)
 **Fix**: Update only changed elements or use replaceChildren()
 
-#### 10. Excessive ensureColorAssignments Calls (lib/canvas-renderer.js:119)
+#### 10. ✅ Excessive ensureColorAssignments Calls (lib/canvas-renderer.js:119)
 **Location**: lib/canvas-renderer.js:119
 **Issue**: Called every frame unnecessarily
 **Fix**: Only call when nodeCount or nodeColors changes
