@@ -9,6 +9,8 @@
 - Use Node 18+ for local tooling. There is no bundler—modules are loaded directly in the browser.
 - Serve the repo statically for manual testing: `python3 -m http.server 8000` (or similar). Visit `http://localhost:8000/index.html`.
 - Follow the style guide already in the JS/CSS: ES modules, two-space indentation, single quotes, minimal inline comments except for complex math/timing. Keep the control-pane footer inline (SVG logo embedded) and maintain the header/canvas column alignment.
+- Begin each session by asking the user what branch name to use for the workstream unless the user has already provided one.
+- After completing each instruction or task from the user, make a concise, descriptive commit before moving on to the next instruction.
 
 ## QA Workflow (Chrome MCP)
 - We maintain MCP macros for regression checks. With the MCP server running at `ws://localhost:59000`, connect via the DevTools Model panel.
