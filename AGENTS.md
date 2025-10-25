@@ -30,7 +30,7 @@
 - Treat `lib/app.js` as the orchestration layer: initialize new UI pieces or controls there, delegating logic to dedicated modules.
 - Keep rendering math and animation timing within `lib/canvas-renderer.js`; expose explicit methods for new behaviours instead of reaching into internals.
 - Place UI-specific code in `lib/ui/` (one file per component/control). Share constants via `lib/constants.js` and state mutations through `lib/state.js`.
-- Add styles to `styles/interactive-network.css`, grouped with existing sections (layout, controls, components). Avoid inline styles unless absolutely necessary.
+- Add styles to `styles/styles.css`, grouped with existing sections (layout, controls, components). Avoid inline styles unless absolutely necessary.
 - Update the MCP smoke macros or add a new macro whenever you ship a user-visible feature so the QA loop covers it.
 
 ## Git & Collaboration
