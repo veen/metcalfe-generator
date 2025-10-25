@@ -1,14 +1,14 @@
 # Coding Agent Guide
 
 ## Current Focus & Surfaces
-- `interactive-network.html` is the public entry point hosted via GitHub Pages; it must stay self-contained (HTML + static assets) with no server-side requirements.
+- `index.html` is the public entry point hosted via GitHub Pages; it must stay self-contained (HTML + static assets) with no server-side requirements.
 - Refactored front-end code now lives under `lib/` (ES modules) and `styles/`. Key modules: `lib/app.js` (bootstrap), `lib/canvas-renderer.js` (animation loop), `lib/state.js` (state container), and UI helpers in `lib/ui/`.
 - Legacy CLI assets (`network-animation-generator.js`, `run-animation.sh`) remain but are not the primary maintenance surface; avoid breaking them unless explicitly asked.
 
 ## Development Basics
 - Use Node 18+ for local tooling. There is no bundler—modules are loaded directly in the browser.
-- Serve the repo statically for manual testing: `python3 -m http.server 8000` (or similar). Visit `http://localhost:8000/interactive-network.html`.
-- Follow the style guide already in the JS/CSS: ES modules, two-space indentation, single quotes, minimal inline comments except for complex math/timing.
+- Serve the repo statically for manual testing: `python3 -m http.server 8000` (or similar). Visit `http://localhost:8000/index.html`.
+- Follow the style guide already in the JS/CSS: ES modules, two-space indentation, single quotes, minimal inline comments except for complex math/timing. Keep the control-pane footer inline (SVG logo embedded) and maintain the header/canvas column alignment.
 
 ## QA Workflow (Chrome MCP)
 - We maintain MCP macros for regression checks. With the MCP server running at `ws://localhost:59000`, connect via the DevTools Model panel.
