@@ -1,8 +1,7 @@
 # Metcalfe's Law Visualization Generator
 
-Metcalfe's Law tells us that the value of a network grows with the square of its connections. That quadratic curve outpaces our linear intuition—double the participants and you get far more than double the interactions. This project turns that abstract growth into something you can see and feel instead of just calculating node counts.
-
 ![The Metcalfe Generator UI](metcalfe-visualizer-app.png)
+This is a simple project built with Claude Code to explore and generate visualizations of Metcalfe's Law: an understanding that the value of a network grows with the square of its connections. It can be hard to grasp how quickly the connections in a network grow. This project turns that abstract growth into something you can see and feel instead of just calculating node counts.
 
 ## Try it for yourself
 
